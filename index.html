@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preu Comunidad Portaliana | UDP</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          institucional: { 900: '#0F172A', 800: '#1E293B', 700: '#334155' },
+          acento: { DEFAULT: '#1D4ED8', dark: '#1E3A8A' }
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body class="bg-white text-institucional-900 antialiased font-sans">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-institucional-900 flex items-center justify-center text-white font-bold group-hover:scale-105 transition-transform">CP</div>
+        <span class="font-bold text-lg tracking-tight hidden sm:block">Comunidad Portaliana</span>
+      </a>
+
+      <!-- Enlaces centrales (Desktop) -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="#quienes-somos" class="hover:text-acento transition-colors">Quiénes Somos</a>
+        <a href="#cursos" class="hover:text-acento transition-colors">Cursos</a>
+        <a href="#equipo" class="hover:text-acento transition-colors">Equipo</a>
+      </div>
+
+      <!-- CTA y Botón Móvil -->
+      <div class="flex items-center gap-4">
+        <a href="dashboard.html" class="bg-acento hover:bg-acento-dark text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow hover:shadow-lg transform hover:-translate-y-0.5 transition-all">
+          Acceso Estudiantes
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden text-slate-600 p-2 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+      <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold text-slate-600">
+        <a href="#quienes-somos" class="hover:text-acento">Quiénes Somos</a>
+        <a href="#cursos" class="hover:text-acento">Cursos</a>
+        <a href="#equipo" class="hover:text-acento">Equipo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative isolate flex items-center justify-center min-h-[85vh]">
+    <div class="absolute inset-0 -z-10">
+      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1974&auto=format&fit=crop"
+           alt="Estudiantes" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-b from-institucional-900/90 to-institucional-900/70"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 mb-6 bg-blue-900/50 px-4 py-1.5 rounded-full backdrop-blur-sm border border-blue-400/30">
+        Preuniversitario 100% Online · Gratuito · UDP
+      </span>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
+        Prepara la PAES 2026 <br/>con nosotros
+      </h1>
+      <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 font-light">
+        Iniciativa fundada por estudiantes de la Universidad Diego Portales. Acompañamiento cercano, material de calidad y una comunidad de apoyo real.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#postular" class="w-full sm:w-auto bg-acento hover:bg-acento-dark text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all">
+          Postular como Alumno
+        </a>
+        <a href="#cursos" class="w-full sm:w-auto text-white font-semibold px-8 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 hover:border-white transition-all">
+          Ver ejes temáticos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURSOS -->
+  <section id="cursos" class="bg-slate-50 border-y border-slate-200 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Nuestros Cursos</h2>
+        <p class="text-slate-500 text-lg">Ejes temáticos alineados oficialmente a la PAES 2026</p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Curso Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-xl bg-blue-50 text-acento flex items-center justify-center font-black text-xl mb-6">M1</div>
+          <h3 class="text-xl font-bold mb-2">Matemática M1</h3>
+          <p class="text-slate-500 leading-relaxed">Números, álgebra, geometría, probabilidad y datos.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-xl bg-blue-50 text-acento flex items-center justify-center font-black text-xl mb-6">M2</div>
+          <h3 class="text-xl font-bold mb-2">Matemática M2</h3>
+          <p class="text-slate-500 leading-relaxed">Profundización matemática para carreras STEM.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-xl bg-blue-50 text-acento flex items-center justify-center font-black text-xl mb-6">Q</div>
+          <h3 class="text-xl font-bold mb-2">Química</h3>
+          <p class="text-slate-500 leading-relaxed">Estructura atómica, química orgánica y reacciones.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-xl bg-blue-50 text-acento flex items-center justify-center font-black text-xl mb-6">CL</div>
+          <h3 class="text-xl font-bold mb-2">Comp. Lectora</h3>
+          <p class="text-slate-500 leading-relaxed">Estrategias de comprensión, análisis y vocabulario.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTULAR / CTA -->
+  <section id="postular" class="bg-institucional-900 py-24">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6">El primer paso a tu futuro</h2>
+      <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">Los cupos son limitados. Si eres escolar y necesitas apoyo para la PAES, o eres estudiante UDP y quieres ser profesor voluntario, únete hoy.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="https://forms.gle/36hkhWZf5eFwhsD37" class="bg-acento hover:bg-acento-dark text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-colors">Quiero ser Alumno</a>
+        <a href="https://forms.gle/7Coz2nnYUXtsyVVk9" class="bg-white hover:bg-slate-100 text-institucional-900 font-bold px-8 py-4 rounded-xl shadow-lg transition-colors">Quiero ser Profesor Voluntario</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-50 border-t border-slate-200 py-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-slate-300 flex items-center justify-center text-white font-bold text-[10px]">CP</div>
+        <p>© 2026 Preu Comunidad Portaliana. Proyecto Estudiantil UDP.</p>
+      </div>
+      <div class="flex gap-6 font-medium">
+        <a href="#" class="hover:text-acento transition-colors">Instagram</a>
+        <a href="#" class="hover:text-acento transition-colors">Discord</a>
+        <a href="#" class="hover:text-acento transition-colors">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Script para el menú móvil
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

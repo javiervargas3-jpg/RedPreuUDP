@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Aula Virtual CP</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { institucional: { 900: '#0F172A' }, acento: { DEFAULT: '#1D4ED8' } } } } }
+</script>
+</head>
+<body class="bg-slate-50 flex items-center justify-center min-h-screen p-4">
+
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+    <!-- Header del Login -->
+    <div class="bg-institucional-900 p-8 text-center">
+      <div class="w-16 h-16 bg-white rounded-2xl mx-auto flex items-center justify-center font-black text-2xl text-institucional-900 mb-4 shadow-lg">CP</div>
+      <h2 class="text-2xl font-bold text-white">Aula Virtual</h2>
+      <p class="text-slate-400 text-sm mt-1">Ingresa tus credenciales de Red Preu UDP</p>
+    </div>
+
+    <!-- Formulario -->
+    <form id="loginForm" class="p-8 space-y-6">
+      <div id="mensajeError" class="hidden bg-red-50 text-red-600 text-sm p-3 rounded-lg border border-red-200 text-center font-medium"></div>
+      
+      <div>
+        <label class="block text-sm font-bold text-slate-700 mb-2">Usuario (RUT)</label>
+        <input type="text" id="rutInput" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 outline-none focus:ring-2 focus:ring-acento transition-all" placeholder="Ej: 12.345.678-9">
+      </div>
+      <div>
+        <label class="block text-sm font-bold text-slate-700 mb-2">Contraseña</label>
+        <input type="password" id="claveInput" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 outline-none focus:ring-2 focus:ring-acento transition-all" placeholder="Primeros 4 dígitos de tu RUT">
+      </div>
+
+      <button type="submit" id="btnIngresar" class="w-full bg-acento hover:bg-blue-700 text-white font-bold rounded-lg p-4 shadow-md transition-all flex justify-center items-center gap-2">
+        <span>Ingresar</span>
+        <svg id="spinner" class="hidden w-5 h-5 text-white animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+      </button>
+      
+      <p class="text-center text-xs text-slate-500 mt-4">¿Tienes problemas? Contacta a la coordinación por Discord.</p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault(); // Evita que la página recargue
+      
+      const rut = document.getElementById('rutInput').value;
+      const clave = document.getElementById('claveInput').value;
+      const btn = document.getElementById('btnIngresar');
+      const spinner = document.getElementById('spinner');
+      const mensajeError = document.getElementById('mensajeError');
+      
+      // Estado de carga visual
+      btn.disabled = true;
+      spinner.classList.remove('hidden');
+      mensajeError.classList.add('hidden');
+
+      // 🔥 REEMPLAZA ESTA URL POR LA QUE COPIASTE DE APPS SCRIPT 🔥
+      const API_URL = "AKfycbwzDIRYcVfji7aqymx_Hs_3mCsqlKO67BmbkrP-Kglnse-FoPs5sDjljGt7nhDde5UIkQ";
+
+      try {
+        const respuesta = await fetch(API_URL, {
+          method: 'POST',
+          body: JSON.stringify({ rut: rut, clave: clave })
+        });
+        
+        const datos = await respuesta.json();
+        
+        if (datos.status === "exito") {
+          // Si es correcto, guardamos el nombre temporalmente y lo enviamos al dashboard
+          localStorage.setItem('alumnoLogueado', datos.nombre);
+          window.location.href = "dashboard.html";
+        } else {
+          // Si hay error (RUT o clave mal)
+          mensajeError.textContent = "Credenciales incorrectas. Verifica tu RUT y clave.";
+          mensajeError.classList.remove('hidden');
+          btn.disabled = false;
+          spinner.classList.add('hidden');
+        }
+      } catch (error) {
+        mensajeError.textContent = "Error de conexión. Intenta nuevamente.";
+        mensajeError.classList.remove('hidden');
+        btn.disabled = false;
+        spinner.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
