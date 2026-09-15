@@ -57,13 +57,17 @@
       mensajeError.classList.add('hidden');
 
       // 🔥 REEMPLAZA ESTA URL POR LA QUE COPIASTE DE APPS SCRIPT 🔥
-      const API_URL = "AKfycbwzDIRYcVfji7aqymx_Hs_3mCsqlKO67BmbkrP-Kglnse-FoPs5sDjljGt7nhDde5UIkQ";
+      const API_URL = "https://script.google.com/macros/s/AKfycbwlAWOqRqCtyoVWu5VNgYiSVtCgZ4sE5benunDb7CZKF0dbeI4yyIIwfdQHWc5PmhWUTg/exec";
 
       try {
         const respuesta = await fetch(API_URL, {
-          method: 'POST',
-          body: JSON.stringify({ rut: rut, clave: clave })
-        });
+        method: 'POST',
+        redirect: 'follow', 
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8', 
+        },
+        body: JSON.stringify({ rut: rut, clave: clave })
+      });
         
         const datos = await respuesta.json();
         
