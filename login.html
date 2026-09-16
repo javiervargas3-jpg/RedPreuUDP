@@ -46,7 +46,7 @@
       e.preventDefault(); 
       
       const rut = document.getElementById('rutInput').value.trim();
-      const clave = document.getElementById('claveInput').value;
+      const clave = document.getElementById('claveInput').value.trim();
       const btn = document.getElementById('btnIngresar');
       const spinner = document.getElementById('spinner');
       const mensajeError = document.getElementById('mensajeError');
@@ -58,13 +58,18 @@
       const API_URL = "https://script.google.com/macros/s/AKfycbwlAWOqRqCtyoVWu5VNgYiSVtCgZ4sE5benunDb7CZKF0dbeI4yyIIwfdQHWc5PmhWUTg/exec";
 
       try {
-        // Armamos la URL con los parámetros listos para un GET simple
         const urlPeticion = `${API_URL}?rut=${encodeURIComponent(rut)}&clave=${encodeURIComponent(clave)}`;
-        
-        // Un GET puro y simple, sin headers que asusten a Safari
         const respuesta = await fetch(urlPeticion);
         
-        const datos = await respuesta.json();
+        // Leemos el texto crudo primero para evitar que colapse si Google envía HTML
+        const textoCrudo = await respuesta.text();
+        
+        let datos;
+        try {
+          datos = JSON.parse(textoCrudo);
+        } catch (err) {
+          throw new Error("Permisos denegados por Google. Revisa que el acceso sea 'Cualquier persona'.");
+        }
         
         if (datos.status === "exito") {
           localStorage.setItem('alumnoLogueado', datos.nombre);
@@ -76,7 +81,8 @@
           spinner.classList.add('hidden');
         }
       } catch (error) {
-        mensajeError.textContent = "Error de conexión. Intenta nuevamente.";
+        // Ahora nos mostrará el error real en la pantalla
+        mensajeError.textContent = error.message;
         mensajeError.classList.remove('hidden');
         btn.disabled = false;
         spinner.classList.add('hidden');
