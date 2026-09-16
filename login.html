@@ -43,7 +43,7 @@
 
   <script>
     document.getElementById('loginForm').addEventListener('submit', async function(e) {
-      e.preventDefault(); // Evita que la página recargue
+      e.preventDefault(); 
       
       const rut = document.getElementById('rutInput').value.trim();
       const clave = document.getElementById('claveInput').value;
@@ -51,7 +51,6 @@
       const spinner = document.getElementById('spinner');
       const mensajeError = document.getElementById('mensajeError');
       
-      // Estado de carga visual
       btn.disabled = true;
       spinner.classList.remove('hidden');
       mensajeError.classList.add('hidden');
@@ -59,37 +58,25 @@
       const API_URL = "https://script.google.com/macros/s/AKfycbwlAWOqRqCtyoVWu5VNgYiSVtCgZ4sE5benunDb7CZKF0dbeI4yyIIwfdQHWc5PmhWUTg/exec";
 
       try {
-        const respuesta = await fetch(API_URL, {
-        method: 'POST',
-        redirect: 'follow', 
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8', 
-        },
-        body: JSON.stringify({ rut: rut, clave: clave })
-      });
+        // Armamos la URL con los parámetros listos para un GET simple
+        const urlPeticion = `${API_URL}?rut=${encodeURIComponent(rut)}&clave=${encodeURIComponent(clave)}`;
         
-        const contenido = await respuesta.text();
-        let datos;
-
-        try {
-          datos = JSON.parse(contenido);
-        } catch {
-          throw new Error('El servidor no devolvió JSON. Revisa que Apps Script tenga publicada la función doPost(e).');
-        }
+        // Un GET puro y simple, sin headers que asusten a Safari
+        const respuesta = await fetch(urlPeticion);
+        
+        const datos = await respuesta.json();
         
         if (datos.status === "exito") {
-          // Si es correcto, guardamos el nombre temporalmente y lo enviamos al dashboard
           localStorage.setItem('alumnoLogueado', datos.nombre);
           window.location.href = "dashboard.html";
         } else {
-          // Si hay error (RUT o clave mal)
           mensajeError.textContent = "Credenciales incorrectas. Verifica tu RUT y clave.";
           mensajeError.classList.remove('hidden');
           btn.disabled = false;
           spinner.classList.add('hidden');
         }
       } catch (error) {
-        mensajeError.textContent = error.message || "Error de conexión. Intenta nuevamente.";
+        mensajeError.textContent = "Error de conexión. Intenta nuevamente.";
         mensajeError.classList.remove('hidden');
         btn.disabled = false;
         spinner.classList.add('hidden');
