@@ -109,7 +109,7 @@
   </div>
 
   <script>
-    // Configuración base de profesores
+    // Configuración base de profesores e iconos
     const infoCursos = {
       'Matemática M1': { profe: 'Prof. Andrea Muñoz', icono: 'M1' },
       'Matemática M2': { profe: 'Prof. Andrea Muñoz', icono: 'M2' },
@@ -119,35 +119,47 @@
       'Comprensión Lectora': { profe: 'Prof. Felipe Díaz', icono: 'CL' }
     };
 
-    // SIMULACIÓN DE BASE DE DATOS DE MATERIALES (Próximamente vendrá del Excel)
-    const baseDatosMateriales = {
-      'Matemática M1': {
-        documentos: [
-          { id: 'doc1', titulo: 'Syllabus y Reglas del Curso', url: '#' },
-          { id: 'doc2', titulo: 'Resumen Fórmulas Álgebra', url: '#' }
-        ],
-        ejercicios: [
-          { id: 'ej1', titulo: 'Guía 1: Números y Proporciones', pts: 25 },
-          { id: 'ej2', titulo: 'Guía 2: Álgebra básica', pts: 25 },
-          { id: 'ej3', titulo: 'Guía 3: Funciones', pts: 25 },
-          { id: 'ej4', titulo: 'Ensayo Parcial', pts: 25 }
-        ],
-        enlaceEnVivo: 'https://zoom.us/j/ejemplo123' // Si está vacío "", dirá que no hay clase activa
-      }
-    };
-
+    // AQUÍ SE GUARDARÁ LA BASE DE DATOS QUE VIENE DEL EXCEL
+    let baseDatosMateriales = {};
     let cursoActivo = "";
 
     document.addEventListener("DOMContentLoaded", () => {
       const nombre = localStorage.getItem('alumnoLogueado');
       const cursosBrutos = localStorage.getItem('alumnoCursos');
+      const materialesCrudos = localStorage.getItem('materialesProfesores'); // Lo que envió el login
       
       if(!nombre) { window.location.href = "login.html"; return; }
 
+      // 1. PROCESAR LOS MATERIALES DEL EXCEL
+      if (materialesCrudos) {
+        try {
+          const listaMat = JSON.parse(materialesCrudos);
+          listaMat.forEach((item, index) => {
+            // Si el curso no existe en nuestra base de datos local, lo creamos
+            if (!baseDatosMateriales[item.curso]) {
+              baseDatosMateriales[item.curso] = { documentos: [], ejercicios: [], enlaceEnVivo: "" };
+            }
+            
+            // Clasificamos según la columna "Tipo" del Excel
+            if (item.tipo === 'documento') {
+              baseDatosMateriales[item.curso].documentos.push({ id: 'doc_' + index, titulo: item.titulo, url: item.url });
+            } else if (item.tipo === 'ejercicio') {
+              baseDatosMateriales[item.curso].ejercicios.push({ id: 'ej_' + index, titulo: item.titulo, url: item.url, pts: item.puntos });
+            } else if (item.tipo === 'clase') {
+              baseDatosMateriales[item.curso].enlaceEnVivo = item.url;
+            }
+          });
+        } catch(e) {
+          console.error("Error al procesar materiales desde el Excel", e);
+        }
+      }
+
+      // 2. MOSTRAR INICIALES
       document.getElementById('user-name').textContent = nombre;
       const iniciales = nombre.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
       document.querySelectorAll('.user-initials').forEach(el => el.textContent = iniciales);
 
+      // 3. GENERAR TARJETAS DE CURSOS
       const contenedor = document.getElementById('cursos-container');
       let cursosArray = cursosBrutos ? cursosBrutos.split(',').map(c => c.trim()).filter(c => c) : [];
 
@@ -178,6 +190,7 @@
       }
     });
 
+    // 4. FUNCIONES DEL CURSO
     function abrirCurso(nombre, profe, icono) {
       cursoActivo = nombre;
       document.getElementById('curso-titulo').textContent = nombre;
@@ -186,7 +199,7 @@
       
       actualizarBarraInterior();
 
-      document.getElementById('panel-contenido').classList.add('hidden'); // Ocultar panel interior
+      document.getElementById('panel-contenido').classList.add('hidden'); 
       document.getElementById('vista-cursos').classList.add('hidden');
       document.getElementById('vista-curso').classList.remove('hidden');
       document.getElementById('vista-curso').classList.add('animate-fade-in');
@@ -198,25 +211,22 @@
       document.getElementById('curso-progreso-barra').style.width = `${progreso}%`;
     }
 
-    function volverCursos() { 
-      location.reload(); 
-    }
+    function volverCursos() { location.reload(); }
 
-    // EL CEREBRO DEL CONTENIDO (Separa Documentos, Ejercicios y Clases)
     function cargarContenido(tipo) {
       const panel = document.getElementById('panel-contenido');
       const tituloPanel = document.getElementById('panel-titulo');
       const listaPanel = document.getElementById('panel-lista');
       
       panel.classList.remove('hidden');
-      listaPanel.innerHTML = ''; // Limpiar lista anterior
+      listaPanel.innerHTML = '';
 
-      // Buscar si tenemos info de este curso en la "base de datos"
       const infoMaterial = baseDatosMateriales[cursoActivo];
 
-      if (!infoMaterial) {
+      // Si no hay material en el Excel para este curso y tipo
+      if (!infoMaterial || (tipo === 'documentos' && infoMaterial.documentos.length === 0) || (tipo === 'ejercicios' && infoMaterial.ejercicios.length === 0) || (tipo === 'clases' && !infoMaterial.enlaceEnVivo)) {
         tituloPanel.textContent = "Sin material";
-        listaPanel.innerHTML = `<p class="text-slate-500 text-sm">El profesor aún no ha subido material para ${cursoActivo}.</p>`;
+        listaPanel.innerHTML = `<p class="text-slate-500 text-sm">El profesor aún no ha subido material reciente de este tipo para ${cursoActivo}.</p>`;
         return;
       }
 
@@ -226,27 +236,29 @@
           listaPanel.innerHTML += `
             <a href="${doc.url}" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border hover:bg-slate-50 transition-colors">
               <div class="text-red-500 text-xl">📕</div>
-              <div class="flex-1 font-semibold text-slate-700 text-sm">${doc.titulo}</div>
-              <div class="text-xs text-slate-400">Ver PDF</div>
+              <div class="flex-1 font-semibold text-slate-700 text-sm hover:text-acento transition-colors">${doc.titulo}</div>
+              <div class="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded font-bold border border-slate-200">Ver PDF</div>
             </a>`;
         });
 
       } else if (tipo === 'ejercicios') {
         tituloPanel.textContent = "✏️ Guías de Ejercitación";
         infoMaterial.ejercicios.forEach(ej => {
-          // Verificar si ya está hecho para marcarlo
           const completado = localStorage.getItem(`ej_${cursoActivo}_${ej.id}`) === 'true';
-          const btnClase = completado ? "bg-green-100 text-green-700 border-green-200" : "bg-white border-slate-200 text-slate-600 hover:border-acento";
+          const btnClase = completado ? "bg-green-50 text-green-700 border-green-200" : "bg-white border-slate-200 text-slate-600 hover:border-blue-300";
           const icono = completado ? "✅" : "📝";
           
           listaPanel.innerHTML += `
             <div class="flex items-center justify-between p-3 rounded-lg border ${btnClase} transition-all">
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-3 flex-1">
                 <div class="text-xl">${icono}</div>
-                <div class="font-semibold text-sm">${ej.titulo}</div>
+                <a href="${ej.url}" target="_blank" class="font-semibold text-sm hover:text-acento underline-offset-2 hover:underline">${ej.titulo}</a>
               </div>
-              ${!completado ? `<button onclick="marcarEjercicioHecho('${ej.id}', ${ej.pts})" class="text-xs font-bold bg-acento text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 shadow-sm">Completar</button>` 
-                            : `<span class="text-xs font-bold">¡Completado!</span>`}
+              <div class="flex items-center gap-3">
+                <span class="text-xs font-bold text-slate-400">${ej.pts} pts</span>
+                ${!completado ? `<button onclick="marcarEjercicioHecho('${ej.id}', ${ej.pts})" class="text-xs font-bold bg-acento text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 shadow-sm transition-colors">Marcar Listo</button>` 
+                              : `<span class="text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded">¡Completado!</span>`}
+              </div>
             </div>`;
         });
 
@@ -255,35 +267,25 @@
         if (infoMaterial.enlaceEnVivo && infoMaterial.enlaceEnVivo !== "") {
           listaPanel.innerHTML = `
             <div class="bg-blue-50 border border-blue-200 p-5 rounded-xl text-center">
-              <p class="text-sm text-slate-600 font-medium mb-4">El profesor ha abierto la sala virtual. Haz clic abajo para unirte vía Zoom o Meet.</p>
+              <p class="text-sm text-slate-600 font-medium mb-4">El profesor ha abierto la sala virtual. Haz clic abajo para unirte.</p>
               <a href="${infoMaterial.enlaceEnVivo}" target="_blank" class="inline-block bg-acento hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all transform hover:-translate-y-1">
                 Conectarse a la clase ahora
               </a>
-            </div>`;
-        } else {
-          listaPanel.innerHTML = `
-            <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center text-slate-500">
-              <p>El profesor no tiene activa una clase en vivo en este momento.</p>
-              <p class="text-xs mt-1">Revisa el horario o espera a que el docente comparta el enlace.</p>
             </div>`;
         }
       }
     }
 
-    // EL MOTOR DEL PROGRESO (Solo se activa con los ejercicios)
     function marcarEjercicioHecho(ejercicioId, puntos) {
-      // 1. Marcar en la memoria que ese ejercicio específico se hizo
       localStorage.setItem(`ej_${cursoActivo}_${ejercicioId}`, 'true');
       
-      // 2. Sumar el progreso general del curso
       let progresoActual = parseInt(localStorage.getItem(`progreso_${cursoActivo}`) || 0);
-      progresoActual += puntos;
+      progresoActual += parseInt(puntos) || 0;
       if(progresoActual > 100) progresoActual = 100;
       localStorage.setItem(`progreso_${cursoActivo}`, progresoActual);
 
-      // 3. Actualizar la vista automáticamente
       actualizarBarraInterior();
-      cargarContenido('ejercicios'); // Recarga la lista de guías para mostrar el ticket ✅
+      cargarContenido('ejercicios'); 
     }
 
     function cerrarSesion() {
