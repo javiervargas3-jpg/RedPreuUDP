@@ -72,8 +72,9 @@
         }
         
         if (datos.status === "exito") {
-          localStorage.setItem('alumnoLogueado', datos.nombre);
-          window.location.href = "dashboard.html";
+       localStorage.setItem('alumnoLogueado', datos.nombre);
+       localStorage.setItem('alumnoCursos', datos.cursos); // <-- ¡SI NO ESTÁ, AGRÉGALA!
+       window.location.href = "dashboard.html";
         } else {
           mensajeError.textContent = "Credenciales incorrectas. Verifica tu RUT y clave.";
           mensajeError.classList.remove('hidden');
