@@ -73,7 +73,8 @@
         
         if (datos.status === "exito") {
        localStorage.setItem('alumnoLogueado', datos.nombre);
-       localStorage.setItem('alumnoCursos', datos.cursos); // <-- ¡SI NO ESTÁ, AGRÉGALA!
+       localStorage.setItem('alumnoCursos', datos.cursos); 
+       localStorage.setItem('materialesProfesores', JSON.stringify(datos.materiales));
        window.location.href = "dashboard.html";
         } else {
           mensajeError.textContent = "Credenciales incorrectas. Verifica tu RUT y clave.";
