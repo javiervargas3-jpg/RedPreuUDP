@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aula Virtual — Preu CP</title>
+<title>Aula Virtual — Red Preu UDP</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -13,30 +13,51 @@
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased font-sans">
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR CON LOGOS Y ALIANZAS -->
   <header class="bg-institucional-900 sticky top-0 z-40 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+      
+      <!-- LOGO PRINCIPAL RPUDP -->
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-acento flex items-center justify-center text-white font-bold text-sm">CP</div>
-        <span class="text-white font-semibold hidden sm:block">Aula Virtual</span>
+        <div class="w-auto px-2 h-8 rounded-lg bg-acento flex items-center justify-center text-white font-black text-sm tracking-wider shadow-sm border border-blue-600">
+          RPUDP
+        </div>
+        <span class="text-white font-semibold hidden sm:block tracking-wide">Aula Virtual</span>
       </div>
-      <div class="w-9 h-9 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center text-white text-sm font-bold cursor-pointer user-initials">--</div>
+
+      <!-- ZONA DE LOGOS INSTITUCIONALES (UDP, InspiraTU, Resumen) -->
+      <div class="hidden md:flex items-center gap-5 bg-slate-800/50 px-5 py-1.5 rounded-full border border-slate-700 backdrop-blur-sm">
+         <span class="text-xs text-slate-400 font-medium mr-2">En alianza con:</span>
+         
+         <!-- Logo UDP (Cargado desde web, en blanco) -->
+         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Logo_Universidad_Diego_Portales.svg/512px-Logo_Universidad_Diego_Portales.svg.png" alt="UDP" class="h-5 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity">
+         
+         <!-- Logo InspiraTU (Espacio preparado) -->
+         <span class="text-sm font-bold text-white opacity-90 tracking-tight">InspiraTU</span>
+         
+         <!-- Logo Resumen (Espacio preparado) -->
+         <span class="text-sm font-bold text-white opacity-90 tracking-tight">Resumen</span>
+      </div>
+
+      <!-- INICIALES USUARIO -->
+      <div class="w-9 h-9 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center text-white text-sm font-bold cursor-pointer user-initials hover:bg-slate-600 transition-colors">--</div>
     </div>
   </header>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col lg:flex-row gap-8">
     
-    <!-- SIDEBAR -->
+    <!-- SIDEBAR PERFIL -->
     <aside class="w-full lg:w-64 shrink-0">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-24">
         <div class="text-center mb-6">
-          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-acento to-blue-400 p-1 mb-3">
-            <div class="w-full h-full bg-white rounded-full flex items-center justify-center text-2xl font-bold text-slate-700 user-initials">--</div>
+          <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-acento to-blue-400 p-1 mb-3 shadow-md">
+            <div class="w-full h-full bg-white rounded-full flex items-center justify-center text-3xl font-bold text-slate-700 user-initials">--</div>
           </div>
-          <h2 class="font-bold text-lg" id="user-name">Cargando...</h2>
-          <p class="text-sm text-acento font-medium">Generación 2026</p>
+          <h2 class="font-bold text-xl text-slate-800" id="user-name">Cargando...</h2>
+          <p class="text-sm text-acento font-bold mt-1">Red Preu UDP</p>
+          <p class="text-xs text-slate-400 mt-1">Generación 2026</p>
         </div>
-        <button onclick="cerrarSesion()" class="w-full text-center text-sm text-red-500 hover:bg-red-50 py-2 rounded-xl font-bold transition-colors">Cerrar Sesión</button>
+        <button onclick="cerrarSesion()" class="w-full text-center text-sm text-red-500 hover:text-red-700 hover:bg-red-50 py-2.5 rounded-xl font-bold transition-all border border-transparent hover:border-red-100">Cerrar Sesión</button>
       </div>
     </aside>
 
@@ -45,71 +66,82 @@
       
       <!-- VISTA 1: LISTA DE CURSOS DINÁMICA -->
       <section id="vista-cursos" class="animate-fade-in">
-        <div class="mb-6">
-          <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">Mis cursos activos</h1>
-          <p class="text-sm text-slate-500 mt-1">Tus módulos inscritos según registro.</p>
+        
+        <!-- BANNER DE BIENVENIDA -->
+        <div class="bg-gradient-to-r from-institucional-900 to-blue-900 rounded-2xl p-6 sm:p-8 mb-8 text-white shadow-lg flex items-center justify-between border border-slate-800 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 opacity-10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+          <div class="relative z-10">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-2">¡Hola, <span id="welcome-name" class="text-blue-300">Estudiante</span>! 👋</h2>
+            <p class="text-slate-300 text-sm sm:text-base">Bienvenido(a) a tu Aula Virtual. Selecciona una materia para continuar tu preparación.</p>
+          </div>
+          <div class="hidden sm:block text-6xl relative z-10 drop-shadow-md">🎓</div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="cursos-container"></div>
+
+        <div class="mb-6 flex justify-between items-end">
+          <div>
+            <h1 class="text-2xl font-bold text-slate-800">Mis ramos activos</h1>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="cursos-container"></div>
       </section>
 
       <!-- VISTA 2: INTERIOR DEL CURSO -->
       <section id="vista-curso" class="hidden">
-        <button onclick="volverCursos()" class="text-sm font-semibold text-slate-500 hover:text-acento mb-6 flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm transition-colors">
-          &larr; Volver a Mis cursos
+        <button onclick="volverCursos()" class="text-sm font-semibold text-slate-500 hover:text-acento mb-6 flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm transition-colors hover:shadow-md">
+          &larr; Volver al inicio
         </button>
         
-        <div class="bg-institucional-900 rounded-2xl p-6 sm:p-8 mb-8 text-white flex items-center gap-5 shadow-lg relative overflow-hidden">
-          <div class="w-16 h-16 rounded-2xl bg-white/20 text-white flex items-center justify-center font-black text-2xl border border-white/30" id="curso-icono"></div>
+        <div class="bg-gradient-to-r from-institucional-900 to-slate-800 rounded-2xl p-6 sm:p-8 mb-8 text-white flex items-center gap-5 shadow-lg relative overflow-hidden border border-slate-700">
+          <div class="w-16 h-16 rounded-2xl bg-white/10 text-white flex items-center justify-center font-black text-2xl border border-white/20 shadow-inner" id="curso-icono"></div>
           <div class="z-10 w-full">
             <div class="flex justify-between items-start">
               <div>
-                <h1 class="text-2xl sm:text-3xl font-bold mb-1" id="curso-titulo"></h1>
-                <p class="text-blue-200 font-medium" id="curso-profesor"></p>
+                <h1 class="text-2xl sm:text-3xl font-bold mb-1 tracking-tight" id="curso-titulo"></h1>
+                <p class="text-blue-300 font-medium flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                  <span id="curso-profesor"></span>
+                </p>
               </div>
-              <div class="text-right hidden sm:block">
-                <span class="text-sm font-bold text-blue-200">Progreso actual</span>
-                <p class="text-2xl font-black" id="curso-progreso-texto">0%</p>
+              <div class="text-right hidden sm:block bg-slate-900/50 px-4 py-2 rounded-xl border border-white/10">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Progreso</span>
+                <p class="text-2xl font-black text-white" id="curso-progreso-texto">0%</p>
               </div>
             </div>
-            <!-- Barra de progreso interior -->
-            <div class="w-full bg-slate-700/50 rounded-full h-2 mt-4">
-              <div id="curso-progreso-barra" class="bg-blue-400 h-2 rounded-full transition-all duration-500" style="width:0%"></div>
+            <div class="w-full bg-slate-700/50 rounded-full h-2.5 mt-5 border border-slate-600/50 overflow-hidden">
+              <div id="curso-progreso-barra" class="bg-gradient-to-r from-blue-500 to-acento h-full rounded-full transition-all duration-700 relative">
+                <div class="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Botones de Navegación del Curso -->
-        <div class="grid grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-6 mb-8">
-          <button onclick="cargarContenido('documentos')" class="aspect-square sm:aspect-auto sm:h-32 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-blue-300 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center gap-2 sm:gap-4 group focus:ring-2 focus:ring-acento">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-50 flex items-center justify-center text-xl sm:text-2xl group-hover:bg-blue-50">📄</div>
-            <span class="font-bold text-xs sm:text-sm text-slate-700">Documentos</span>
+        <div class="grid grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-5 mb-8">
+          <button onclick="cargarContenido('documentos')" class="aspect-square sm:aspect-auto sm:h-32 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-blue-400 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center gap-2 sm:gap-3 group focus:ring-2 focus:ring-acento">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-red-50 flex items-center justify-center text-xl sm:text-2xl group-hover:bg-red-100 transition-colors shadow-inner">📕</div>
+            <span class="font-bold text-xs sm:text-sm text-slate-700 group-hover:text-acento transition-colors">Apuntes</span>
           </button>
-          <button onclick="cargarContenido('ejercicios')" class="aspect-square sm:aspect-auto sm:h-32 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-blue-300 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center gap-2 sm:gap-4 group focus:ring-2 focus:ring-acento">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-50 flex items-center justify-center text-xl sm:text-2xl group-hover:bg-blue-50">✏️</div>
-            <span class="font-bold text-xs sm:text-sm text-slate-700">Ejercicios</span>
+          <button onclick="cargarContenido('ejercicios')" class="aspect-square sm:aspect-auto sm:h-32 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-blue-400 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center gap-2 sm:gap-3 group focus:ring-2 focus:ring-acento">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-green-50 flex items-center justify-center text-xl sm:text-2xl group-hover:bg-green-100 transition-colors shadow-inner">📝</div>
+            <span class="font-bold text-xs sm:text-sm text-slate-700 group-hover:text-acento transition-colors">Guías</span>
           </button>
-          <button onclick="cargarContenido('clases')" class="aspect-square sm:aspect-auto sm:h-32 bg-white rounded-2xl border border-blue-200 shadow-md hover:border-blue-400 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center gap-2 sm:gap-4 group bg-blue-50 focus:ring-2 focus:ring-acento relative overflow-hidden">
-            <div class="absolute top-2 right-2 flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span></div>
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-acento text-white flex items-center justify-center text-xl sm:text-2xl">🎥</div>
-            <span class="font-bold text-xs sm:text-sm text-acento text-center">Clase en Vivo</span>
+          <button onclick="cargarContenido('clases')" class="aspect-square sm:aspect-auto sm:h-32 bg-gradient-to-b from-blue-50 to-white rounded-2xl border border-blue-200 shadow-md hover:border-blue-400 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center gap-2 sm:gap-3 group focus:ring-2 focus:ring-acento relative overflow-hidden">
+            <div class="absolute top-3 right-3 flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span></div>
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-acento text-white flex items-center justify-center text-xl sm:text-2xl shadow-lg group-hover:scale-110 transition-transform">🎥</div>
+            <span class="font-bold text-xs sm:text-sm text-acento text-center">Clase Viva</span>
           </button>
         </div>
 
-        <!-- PANEL DE VISUALIZACIÓN DINÁMICA -->
-        <div id="panel-contenido" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hidden animate-fade-in">
-          <h2 id="panel-titulo" class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">Selecciona una opción</h2>
-          <div id="panel-lista" class="space-y-3">
-            <!-- Aquí se inyectan los PDFs, Guías o Links -->
-          </div>
+        <div id="panel-contenido" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm hidden animate-fade-in">
+          <h2 id="panel-titulo" class="text-xl font-bold text-slate-800 mb-5 border-b border-slate-100 pb-3">Selecciona una opción</h2>
+          <div id="panel-lista" class="space-y-3"></div>
         </div>
-
       </section>
 
     </main>
   </div>
 
   <script>
-    // Configuración base de profesores e iconos
     const infoCursos = {
       'Matemática M1': { profe: 'Prof. Andrea Muñoz', icono: 'M1' },
       'Matemática M2': { profe: 'Prof. Andrea Muñoz', icono: 'M2' },
@@ -119,28 +151,23 @@
       'Comprensión Lectora': { profe: 'Prof. Felipe Díaz', icono: 'CL' }
     };
 
-    // AQUÍ SE GUARDARÁ LA BASE DE DATOS QUE VIENE DEL EXCEL
     let baseDatosMateriales = {};
     let cursoActivo = "";
 
     document.addEventListener("DOMContentLoaded", () => {
       const nombre = localStorage.getItem('alumnoLogueado');
       const cursosBrutos = localStorage.getItem('alumnoCursos');
-      const materialesCrudos = localStorage.getItem('materialesProfesores'); // Lo que envió el login
+      const materialesCrudos = localStorage.getItem('materialesProfesores');
       
       if(!nombre) { window.location.href = "login.html"; return; }
 
-      // 1. PROCESAR LOS MATERIALES DEL EXCEL
       if (materialesCrudos) {
         try {
           const listaMat = JSON.parse(materialesCrudos);
           listaMat.forEach((item, index) => {
-            // Si el curso no existe en nuestra base de datos local, lo creamos
             if (!baseDatosMateriales[item.curso]) {
               baseDatosMateriales[item.curso] = { documentos: [], ejercicios: [], enlaceEnVivo: "" };
             }
-            
-            // Clasificamos según la columna "Tipo" del Excel
             if (item.tipo === 'documento') {
               baseDatosMateriales[item.curso].documentos.push({ id: 'doc_' + index, titulo: item.titulo, url: item.url });
             } else if (item.tipo === 'ejercicio') {
@@ -149,48 +176,47 @@
               baseDatosMateriales[item.curso].enlaceEnVivo = item.url;
             }
           });
-        } catch(e) {
-          console.error("Error al procesar materiales desde el Excel", e);
-        }
+        } catch(e) {}
       }
 
-      // 2. MOSTRAR INICIALES
       document.getElementById('user-name').textContent = nombre;
+      // Extraer solo el primer nombre para el cartel de bienvenida
+      document.getElementById('welcome-name').textContent = nombre.split(' ')[0];
+      
       const iniciales = nombre.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
       document.querySelectorAll('.user-initials').forEach(el => el.textContent = iniciales);
 
-      // 3. GENERAR TARJETAS DE CURSOS
       const contenedor = document.getElementById('cursos-container');
       let cursosArray = cursosBrutos ? cursosBrutos.split(',').map(c => c.trim()).filter(c => c) : [];
 
       if(cursosArray.length === 0) {
-        contenedor.innerHTML = '<p class="text-slate-500 col-span-2">No tienes cursos registrados en el sistema.</p>';
+        contenedor.innerHTML = '<div class="col-span-2 bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-xl text-sm font-medium">No tienes cursos registrados en el sistema.</div>';
       } else {
         cursosArray.forEach(curso => {
           const info = infoCursos[curso] || { profe: 'Profesor Asignado', icono: curso.substring(0,2).toUpperCase() };
           let progreso = parseInt(localStorage.getItem(`progreso_${curso}`) || 0);
 
           const tarjeta = document.createElement('button');
-          tarjeta.className = "text-left bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transform hover:-translate-y-1 transition-all duration-200 p-5 group w-full";
+          tarjeta.className = "text-left bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-400 transform hover:-translate-y-1.5 transition-all duration-300 p-6 group w-full relative overflow-hidden";
           tarjeta.onclick = () => abrirCurso(curso, info.profe, info.icono);
           tarjeta.innerHTML = `
-            <div class="flex justify-between mb-4">
-              <div class="w-12 h-12 rounded-xl bg-blue-100 text-acento flex items-center justify-center font-black text-xl group-hover:bg-acento group-hover:text-white transition-colors">${info.icono}</div>
-              <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-md">En curso</span>
+            <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-blue-100 transition-colors"></div>
+            <div class="flex justify-between mb-5 relative z-10">
+              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 text-acento flex items-center justify-center font-black text-2xl group-hover:from-acento group-hover:to-blue-700 group-hover:text-white transition-all shadow-sm border border-blue-100">${info.icono}</div>
+              <span class="bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold px-3 py-1.5 rounded-lg h-fit">En curso</span>
             </div>
-            <h3 class="font-bold text-lg mb-1">${curso}</h3>
-            <p class="text-sm text-slate-500 font-medium mb-4">${info.profe}</p>
-            <div class="w-full bg-slate-100 rounded-full h-2">
-              <div class="bg-acento h-2 rounded-full transition-all duration-500" style="width:${progreso}%"></div>
+            <h3 class="font-bold text-xl mb-1 text-slate-800 group-hover:text-acento transition-colors relative z-10">${curso}</h3>
+            <p class="text-sm text-slate-500 font-medium mb-5 relative z-10">${info.profe}</p>
+            <div class="w-full bg-slate-100 rounded-full h-2.5 relative z-10 border border-slate-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-blue-400 to-acento h-full rounded-full transition-all duration-700" style="width:${progreso}%"></div>
             </div>
-            <div class="text-right mt-2"><span class="text-xs font-bold text-slate-400">Progreso: ${progreso}%</span></div>
+            <div class="text-right mt-2 relative z-10"><span class="text-xs font-bold text-slate-400">Progreso: ${progreso}%</span></div>
           `;
           contenedor.appendChild(tarjeta);
         });
       }
     });
 
-    // 4. FUNCIONES DEL CURSO
     function abrirCurso(nombre, profe, icono) {
       cursoActivo = nombre;
       document.getElementById('curso-titulo').textContent = nombre;
@@ -203,6 +229,7 @@
       document.getElementById('vista-cursos').classList.add('hidden');
       document.getElementById('vista-curso').classList.remove('hidden');
       document.getElementById('vista-curso').classList.add('animate-fade-in');
+      window.scrollTo(0,0);
     }
 
     function actualizarBarraInterior() {
@@ -223,41 +250,45 @@
 
       const infoMaterial = baseDatosMateriales[cursoActivo];
 
-      // Si no hay material en el Excel para este curso y tipo
       if (!infoMaterial || (tipo === 'documentos' && infoMaterial.documentos.length === 0) || (tipo === 'ejercicios' && infoMaterial.ejercicios.length === 0) || (tipo === 'clases' && !infoMaterial.enlaceEnVivo)) {
-        tituloPanel.textContent = "Sin material";
-        listaPanel.innerHTML = `<p class="text-slate-500 text-sm">El profesor aún no ha subido material reciente de este tipo para ${cursoActivo}.</p>`;
+        tituloPanel.textContent = "Sin material disponible";
+        listaPanel.innerHTML = `
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-8 text-center">
+            <span class="text-4xl block mb-3 opacity-50">📂</span>
+            <p class="text-slate-600 font-medium text-sm">El profesor aún no ha subido material reciente para esta sección.</p>
+          </div>`;
         return;
       }
 
       if (tipo === 'documentos') {
-        tituloPanel.textContent = "📄 Documentos y Apuntes";
+        tituloPanel.textContent = "📕 Documentos y Apuntes";
         infoMaterial.documentos.forEach(doc => {
           listaPanel.innerHTML += `
-            <a href="${doc.url}" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border hover:bg-slate-50 transition-colors">
-              <div class="text-red-500 text-xl">📕</div>
-              <div class="flex-1 font-semibold text-slate-700 text-sm hover:text-acento transition-colors">${doc.titulo}</div>
-              <div class="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded font-bold border border-slate-200">Ver PDF</div>
+            <a href="${doc.url}" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-md hover:bg-blue-50/30 transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">📄</div>
+              <div class="flex-1 font-semibold text-slate-700 text-sm group-hover:text-acento">${doc.titulo}</div>
+              <div class="text-xs text-slate-500 bg-white px-3 py-1.5 rounded-lg font-bold border border-slate-200 shadow-sm group-hover:bg-acento group-hover:text-white group-hover:border-acento transition-colors">Abrir PDF</div>
             </a>`;
         });
 
       } else if (tipo === 'ejercicios') {
-        tituloPanel.textContent = "✏️ Guías de Ejercitación";
+        tituloPanel.textContent = "📝 Guías de Ejercitación";
         infoMaterial.ejercicios.forEach(ej => {
           const completado = localStorage.getItem(`ej_${cursoActivo}_${ej.id}`) === 'true';
-          const btnClase = completado ? "bg-green-50 text-green-700 border-green-200" : "bg-white border-slate-200 text-slate-600 hover:border-blue-300";
-          const icono = completado ? "✅" : "📝";
+          const btnClase = completado ? "bg-emerald-50/50 border-emerald-200" : "bg-white border-slate-200 hover:border-blue-300 hover:shadow-md";
           
           listaPanel.innerHTML += `
-            <div class="flex items-center justify-between p-3 rounded-lg border ${btnClase} transition-all">
-              <div class="flex items-center gap-3 flex-1">
-                <div class="text-xl">${icono}</div>
-                <a href="${ej.url}" target="_blank" class="font-semibold text-sm hover:text-acento underline-offset-2 hover:underline">${ej.titulo}</a>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border ${btnClase} transition-all gap-4">
+              <div class="flex items-center gap-4 flex-1">
+                <div class="w-10 h-10 rounded-lg ${completado ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-500'} flex items-center justify-center text-xl">
+                  ${completado ? '✓' : '✏️'}
+                </div>
+                <a href="${ej.url}" target="_blank" class="font-semibold text-sm text-slate-700 hover:text-acento transition-colors">${ej.titulo}</a>
               </div>
-              <div class="flex items-center gap-3">
-                <span class="text-xs font-bold text-slate-400">${ej.pts} pts</span>
-                ${!completado ? `<button onclick="marcarEjercicioHecho('${ej.id}', ${ej.pts})" class="text-xs font-bold bg-acento text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 shadow-sm transition-colors">Marcar Listo</button>` 
-                              : `<span class="text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded">¡Completado!</span>`}
+              <div class="flex items-center justify-between sm:justify-end gap-4 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
+                <span class="text-xs font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded-md">${ej.pts} pts</span>
+                ${!completado ? `<button onclick="marcarEjercicioHecho('${ej.id}', ${ej.pts})" class="text-xs font-bold bg-acento text-white px-4 py-2 rounded-lg hover:bg-blue-700 shadow-sm transition-colors hover:shadow-md active:scale-95">Marcar Listo</button>` 
+                              : `<span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Completado</span>`}
               </div>
             </div>`;
         });
@@ -266,10 +297,14 @@
         tituloPanel.textContent = "🎥 Sala de Clases en Vivo";
         if (infoMaterial.enlaceEnVivo && infoMaterial.enlaceEnVivo !== "") {
           listaPanel.innerHTML = `
-            <div class="bg-blue-50 border border-blue-200 p-5 rounded-xl text-center">
-              <p class="text-sm text-slate-600 font-medium mb-4">El profesor ha abierto la sala virtual. Haz clic abajo para unirte.</p>
-              <a href="${infoMaterial.enlaceEnVivo}" target="_blank" class="inline-block bg-acento hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all transform hover:-translate-y-1">
-                Conectarse a la clase ahora
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 p-8 rounded-2xl text-center shadow-inner relative overflow-hidden">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-acento to-indigo-500"></div>
+              <div class="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center text-3xl mx-auto mb-4 border border-blue-100 animate-bounce">📡</div>
+              <h3 class="text-lg font-bold text-slate-800 mb-2">Sala Virtual Activa</h3>
+              <p class="text-sm text-slate-600 font-medium mb-6 max-w-md mx-auto">El profesor ya está en la sala. Asegúrate de tener tu micrófono silenciado al entrar.</p>
+              <a href="${infoMaterial.enlaceEnVivo}" target="_blank" class="inline-flex items-center gap-2 bg-acento hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 hover:shadow-blue-500/30">
+                <span>Unirme a la clase</span>
+                <span class="text-xl">↗</span>
               </a>
             </div>`;
         }
@@ -293,5 +328,10 @@
       window.location.href = "login.html";
     }
   </script>
+  <style>
+    @keyframes shimmer {
+      100% { transform: translateX(100%); }
+    }
+  </style>
 </body>
 </html>

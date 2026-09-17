@@ -21,70 +21,75 @@
 <body class="bg-white text-institucional-900 antialiased font-sans">
 
   <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-institucional-900 flex items-center justify-center text-white font-bold group-hover:scale-105 transition-transform">CP</div>
-        <span class="font-bold text-lg tracking-tight hidden sm:block">Comunidad Portaliana</span>
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo (imagen real; si no tienes cp-logo.png todavía, deja el bloque de texto de respaldo) -->
+    <a href="#" class="flex items-center gap-3 group">
+      <img src="assets/logos/cp-logo.png" alt="Comunidad Portaliana" class="h-10 w-10 rounded-xl object-cover group-hover:scale-105 transition-transform"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="w-10 h-10 rounded-xl bg-institucional-900 items-center justify-center text-white font-bold hidden group-hover:scale-105 transition-transform">CP</div>
+      <span class="font-bold text-lg tracking-tight hidden sm:block">Comunidad Portaliana</span>
+    </a>
+
+    <!-- Enlaces centrales (Desktop) -->
+    <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+      <a href="#quienes-somos" class="hover:text-acento transition-colors">Quiénes Somos</a>
+      <a href="#cursos" class="hover:text-acento transition-colors">Cursos</a>
+      <a href="#equipo" class="hover:text-acento transition-colors">Equipo</a>
+    </div>
+
+    <!-- Logo UDP + CTA -->
+    <div class="flex items-center gap-4">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Logo_Universidad_Diego_Portales.svg/512px-Logo_Universidad_Diego_Portales.svg.png"
+           alt="UDP" class="h-6 hidden sm:block opacity-80">
+      <a href="login.html" class="bg-acento hover:bg-acento-dark text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow hover:shadow-lg transform hover:-translate-y-0.5 transition-all">
+        Acceso Estudiantes
       </a>
-
-      <!-- Enlaces centrales (Desktop) -->
-      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-        <a href="#quienes-somos" class="hover:text-acento transition-colors">Quiénes Somos</a>
-        <a href="#cursos" class="hover:text-acento transition-colors">Cursos</a>
-        <a href="#equipo" class="hover:text-acento transition-colors">Equipo</a>
-      </div>
-
-      <!-- CTA y Botón Móvil -->
-      <div class="flex items-center gap-4">
-        <a href="login.html" class="bg-acento hover:bg-acento-dark text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow hover:shadow-lg transform hover:-translate-y-0.5 transition-all">
-          Acceso Estudiantes
-        </a>
-        <button id="mobile-menu-btn" class="md:hidden text-slate-600 p-2 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-      </div>
-    </nav>
-    
-    <!-- Menú Móvil -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
-      <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold text-slate-600">
-        <a href="#quienes-somos" class="hover:text-acento">Quiénes Somos</a>
-        <a href="#cursos" class="hover:text-acento">Cursos</a>
-        <a href="#equipo" class="hover:text-acento">Equipo</a>
-      </div>
+      <button id="mobile-menu-btn" class="md:hidden text-slate-600 p-2 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
     </div>
-  </header>
+  </nav>
 
-  <!-- HERO -->
-  <section class="relative isolate flex items-center justify-center min-h-[85vh]">
-    <div class="absolute inset-0 -z-10">
-      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1974&auto=format&fit=crop"
-           alt="Estudiantes" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-gradient-to-b from-institucional-900/90 to-institucional-900/70"></div>
+  <!-- Menú Móvil (igual que antes) -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold text-slate-600">
+      <a href="#quienes-somos" class="hover:text-acento">Quiénes Somos</a>
+      <a href="#cursos" class="hover:text-acento">Cursos</a>
+      <a href="#equipo" class="hover:text-acento">Equipo</a>
     </div>
+  </div>
+</header>
 
-    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
-      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 mb-6 bg-blue-900/50 px-4 py-1.5 rounded-full backdrop-blur-sm border border-blue-400/30">
-        Preuniversitario 100% Online · Gratuito · UDP
-      </span>
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
-        Prepara la PAES 2026 <br/>con nosotros
-      </h1>
-      <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 font-light">
-        Iniciativa fundada por estudiantes de la Universidad Diego Portales. Acompañamiento cercano, material de calidad y una comunidad de apoyo real.
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#postular" class="w-full sm:w-auto bg-acento hover:bg-acento-dark text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all">
-          Postular como Alumno
-        </a>
-        <a href="#cursos" class="w-full sm:w-auto text-white font-semibold px-8 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 hover:border-white transition-all">
-          Ver ejes temáticos
-        </a>
-      </div>
+<!-- HERO -->
+<section class="relative isolate flex items-center justify-center min-h-[85vh]">
+  <div class="absolute inset-0 -z-10">
+    <img src="assets/hero.jpg"
+         alt="Estudiantes Comunidad Portaliana" class="w-full h-full object-cover"
+         onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1974&auto=format&fit=crop';">
+    <div class="absolute inset-0 bg-gradient-to-b from-institucional-900/90 to-institucional-900/70"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 mb-6 bg-blue-900/50 px-4 py-1.5 rounded-full backdrop-blur-sm border border-blue-400/30">
+      Preuniversitario 100% Online · Gratuito · UDP
+    </span>
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
+      Prepara la PAES 2026 <br/>con nosotros
+    </h1>
+    <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 font-light">
+      Iniciativa fundada por estudiantes de la Universidad Diego Portales. Acompañamiento cercano, material de calidad y una comunidad de apoyo real.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#postular" class="w-full sm:w-auto bg-acento hover:bg-acento-dark text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all">
+        Postular como Alumno
+      </a>
+      <a href="#cursos" class="w-full sm:w-auto text-white font-semibold px-8 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 hover:border-white transition-all">
+        Ver ejes temáticos
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- CURSOS -->
   <section id="cursos" class="bg-slate-50 border-y border-slate-200 py-24">
