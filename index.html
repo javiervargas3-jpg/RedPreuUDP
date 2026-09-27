@@ -17,6 +17,30 @@
     }
   }
 </script>
+<style>
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-enter { animation: rise-in 850ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    body.has-reveal [data-reveal] {
+      opacity: 0;
+      translate: 0 20px;
+      transition: opacity 700ms ease, translate 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    body.has-reveal [data-reveal].is-visible { opacity: 1; translate: 0 0; }
+    #cursos .grid > [data-reveal]:nth-child(2) { --reveal-delay: 90ms; }
+    #cursos .grid > [data-reveal]:nth-child(3) { --reveal-delay: 180ms; }
+    #cursos .grid > [data-reveal]:nth-child(4) { --reveal-delay: 270ms; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto !important; }
+  }
+</style>
 </head>
 <body class="bg-white text-institucional-900 antialiased font-sans">
 
@@ -70,7 +94,7 @@
     <div class="absolute inset-0 bg-gradient-to-b from-institucional-900/90 to-institucional-900/70"></div>
   </div>
 
-  <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+  <div class="max-w-4xl mx-auto px-6 py-20 text-center hero-enter">
     <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 mb-6 bg-blue-900/50 px-4 py-1.5 rounded-full backdrop-blur-sm border border-blue-400/30">
       Preuniversitario 100% Online · Gratuito · UDP
     </span>
@@ -94,29 +118,29 @@
   <!-- CURSOS -->
   <section id="cursos" class="bg-slate-50 border-y border-slate-200 py-24">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16" data-reveal>
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Nuestros Cursos</h2>
         <p class="text-slate-500 text-lg">Ejes temáticos alineados oficialmente a la PAES 2026</p>
       </div>
       
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Curso Card -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+        <div data-reveal class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
           <div class="w-14 h-14 rounded-xl bg-blue-50 text-acento flex items-center justify-center font-black text-xl mb-6">M1</div>
           <h3 class="text-xl font-bold mb-2">Matemática M1</h3>
           <p class="text-slate-500 leading-relaxed">Números, álgebra, geometría, probabilidad y datos.</p>
         </div>
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+        <div data-reveal class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
           <div class="w-14 h-14 rounded-xl bg-blue-50 text-acento flex items-center justify-center font-black text-xl mb-6">M2</div>
           <h3 class="text-xl font-bold mb-2">Matemática M2</h3>
           <p class="text-slate-500 leading-relaxed">Profundización matemática para carreras STEM.</p>
         </div>
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+        <div data-reveal class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
           <div class="w-14 h-14 rounded-xl bg-blue-50 text-acento flex items-center justify-center font-black text-xl mb-6">Q</div>
           <h3 class="text-xl font-bold mb-2">Química</h3>
           <p class="text-slate-500 leading-relaxed">Estructura atómica, química orgánica y reacciones.</p>
         </div>
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+        <div data-reveal class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
           <div class="w-14 h-14 rounded-xl bg-blue-50 text-acento flex items-center justify-center font-black text-xl mb-6">CL</div>
           <h3 class="text-xl font-bold mb-2">Comp. Lectora</h3>
           <p class="text-slate-500 leading-relaxed">Estrategias de comprensión, análisis y vocabulario.</p>
@@ -127,7 +151,7 @@
 
   <!-- POSTULAR / CTA -->
   <section id="postular" class="bg-institucional-900 py-24">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+    <div class="max-w-4xl mx-auto px-6 text-center" data-reveal>
       <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6">El primer paso a tu futuro</h2>
       <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">Los cupos son limitados. Si eres escolar y necesitas apoyo para la PAES, o eres estudiante UDP y quieres ser profesor voluntario, únete hoy.</p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -161,6 +185,29 @@
     btn.addEventListener('click', () => {
       menu.classList.toggle('hidden');
     });
+
+    const revealItems = [...document.querySelectorAll('[data-reveal]')];
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.body.classList.add('has-reveal');
+      const revealVisibleItems = () => {
+        revealItems.forEach(item => {
+          if (!item.classList.contains('is-visible') && item.getBoundingClientRect().top < window.innerHeight * 0.88) {
+            item.classList.add('is-visible');
+          }
+        });
+
+        if (revealItems.every(item => item.classList.contains('is-visible'))) {
+          window.removeEventListener('scroll', revealVisibleItems);
+          window.removeEventListener('resize', revealVisibleItems);
+          document.removeEventListener('visibilitychange', revealVisibleItems);
+        }
+      };
+
+      window.addEventListener('scroll', revealVisibleItems, { passive: true });
+      window.addEventListener('resize', revealVisibleItems);
+      document.addEventListener('visibilitychange', revealVisibleItems);
+      revealVisibleItems();
+    }
   </script>
 </body>
 </html>
