@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiénes Somos | Comunidad Portaliana</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            institucional: { 900: '#0F172A', 800: '#1E293B', 700: '#334155' },
+            acento: { DEFAULT: '#1D4ED8', dark: '#1E3A8A' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-institucional-900 antialiased font-sans">
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/logos/cp-logo.png" alt="Comunidad Portaliana" class="h-12 w-auto object-contain">
+        <span class="font-bold text-lg tracking-tight hidden sm:block">Comunidad Portaliana</span>
+      </a>
+      <div class="flex items-center gap-5 text-sm font-semibold text-slate-600">
+        <a href="index.html" class="hover:text-acento transition-colors">Inicio</a>
+        <a href="equipo.html" class="hover:text-acento transition-colors">Equipo</a>
+        <a href="login.html" class="bg-acento hover:bg-acento-dark text-white px-4 py-2.5 rounded-lg transition-colors">Aula Virtual</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="relative isolate flex items-center min-h-[52vh]">
+      <div class="absolute inset-0 -z-10">
+        <img src="assets/hero.jpg" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-institucional-900/90 to-institucional-900/65"></div>
+      </div>
+      <div class="max-w-6xl mx-auto w-full px-6 py-20">
+        <p class="text-sm font-bold uppercase tracking-widest text-blue-300 mb-4">Comunidad Portaliana · UDP</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">Quiénes Somos</h1>
+        <p class="text-lg md:text-xl text-slate-200 max-w-2xl leading-relaxed">Una iniciativa estudiantil que acompaña a jóvenes en su preparación para la PAES con cursos gratuitos, recursos y una comunidad de apoyo.</p>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-24">
+      <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-widest text-acento mb-3">Nuestra iniciativa</p>
+          <h2 class="text-3xl font-bold tracking-tight mb-6">Aprender en comunidad abre caminos</h2>
+          <p class="text-slate-600 leading-relaxed mb-5">Comunidad Portaliana es un preuniversitario en línea y gratuito, fundado por estudiantes de la Universidad Diego Portales. Nace para acercar apoyo académico y acompañamiento a quienes se preparan para rendir la PAES.</p>
+          <p class="text-slate-600 leading-relaxed">La propuesta combina contenidos de estudio con una comunidad cercana. El objetivo es que cada estudiante pueda avanzar con orientación y herramientas para enfrentar su preparación.</p>
+        </div>
+        <div class="border-l-4 border-acento pl-6 py-2">
+          <h3 class="text-xl font-bold mb-3">Una preparación accesible</h3>
+          <p class="text-slate-600 leading-relaxed">Los cursos se realizan en línea y son gratuitos. La oferta incluye Matemática M1, Matemática M2, Química y Competencia Lectora.</p>
+          <a href="index.html#cursos" class="inline-flex mt-6 text-acento font-semibold hover:text-acento-dark transition-colors">Conocer los cursos <span aria-hidden="true" class="ml-2">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-50 border-y border-slate-200 py-16">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-widest text-acento mb-3">Súmate</p>
+          <h2 class="text-2xl md:text-3xl font-bold mb-2">Tu próximo paso empieza aquí</h2>
+          <p class="text-slate-600">Revisa las opciones para estudiar o enseñar como voluntario.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="https://forms.gle/36hkhWZf5eFwhsD37" class="bg-acento hover:bg-acento-dark text-white font-bold px-6 py-3 rounded-lg transition-colors">Postular como alumno</a>
+          <a href="https://forms.gle/7Coz2nnYUXtsyVVk9" class="bg-white border border-slate-300 hover:border-acento text-institucional-900 font-bold px-6 py-3 rounded-lg transition-colors">Ser profesor voluntario</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-institucional-900 text-slate-300 py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-5 text-sm">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/logo-udp-blanco.png" alt="Logo Universidad Diego Portales" class="h-8 w-12 object-contain shrink-0">
+        <span>© 2026 Comunidad Portaliana · Proyecto Estudiantil UDP</span>
+      </a>
+      <div class="flex flex-wrap justify-center gap-x-5 gap-y-3">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram (por URL)</a>
+        <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Discord (por URL)</a>
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;su=Contacto%20Comunidad%20Portaliana" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Contacto Gmail (por URL)</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
