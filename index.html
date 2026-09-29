@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preu Comunidad Portaliana | UDP</title>
+<title>Preu Nexo | Preuniversitario</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -49,10 +49,7 @@
   <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo (imagen real; si no tienes cp-logo.png todavía, deja el bloque de texto de respaldo) -->
     <a href="index.html" class="flex items-center gap-3 group">
-      <img src="assets/logos/cp-logo.png" alt="Comunidad Portaliana" class="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-       <div class="w-12 h-12 rounded-xl bg-institucional-900 items-center justify-center text-white font-bold hidden group-hover:scale-105 transition-transform">CP</div>
-      <span class="font-bold text-lg tracking-tight hidden sm:block">Comunidad Portaliana</span>
+      <span class="font-bold text-lg tracking-tight hidden sm:block">Preu Nexo</span>
     </a>
 
     <!-- Enlaces centrales (Desktop) -->
@@ -62,10 +59,8 @@
       <a href="equipo.html" class="hover:text-acento transition-colors">Equipo</a>
     </div>
 
-    <!-- Logo UDP + CTA -->
+        <!-- Acceso a estudiantes -->
     <div class="flex items-center gap-4">
-      <img src="assets/logo-udp-blanco.png"
-           alt="UDP" class="h-8 hidden sm:block opacity-80">
       <a href="login.html" class="bg-acento hover:bg-acento-dark text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow hover:shadow-lg transform hover:-translate-y-0.5 transition-all">
         Acceso Estudiantes
       </a>
@@ -89,20 +84,21 @@
 <section class="relative isolate flex items-center justify-center min-h-[85vh]">
   <div class="absolute inset-0 -z-10">
     <img src="assets/hero.jpg"
-         alt="Estudiantes Comunidad Portaliana" class="w-full h-full object-cover"
+         alt="Estudiantes preparando la PAES" class="w-full h-full object-cover"
          onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1974&auto=format&fit=crop';">
     <div class="absolute inset-0 bg-gradient-to-b from-institucional-900/90 to-institucional-900/70"></div>
   </div>
 
   <div class="max-w-4xl mx-auto px-6 py-20 text-center hero-enter">
     <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 mb-6 bg-blue-900/50 px-4 py-1.5 rounded-full backdrop-blur-sm border border-blue-400/30">
-      Preuniversitario 100% Online · Gratuito · UDP
+      Preuniversitario 100% online · Gratuito
     </span>
     <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
-      Prepara la PAES 2026 <br/>con nosotros
+      Preu Nexo
     </h1>
+    <p class="text-lg md:text-xl text-white font-semibold max-w-2xl mx-auto mb-4">Iniciativa fundada por estudiantes de la Universidad Diego Portales</p>
     <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 font-light">
-      Iniciativa fundada por estudiantes de la Universidad Diego Portales. Acompañamiento cercano, material de calidad y una comunidad de apoyo real.
+      Prepárate para la PAES con acompañamiento cercano, material de calidad y una comunidad de apoyo real.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       <a href="#postular" class="w-full sm:w-auto bg-acento hover:bg-acento-dark text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all">
@@ -153,7 +149,7 @@
   <section id="postular" class="bg-institucional-900 py-24">
     <div class="max-w-4xl mx-auto px-6 text-center" data-reveal>
       <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6">El primer paso a tu futuro</h2>
-      <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">Los cupos son limitados. Si eres escolar y necesitas apoyo para la PAES, o eres estudiante UDP y quieres ser profesor voluntario, únete hoy.</p>
+      <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">Los cupos son limitados. Si necesitas apoyo para la PAES o quieres ser profesor voluntario, únete hoy.</p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a href="https://forms.gle/36hkhWZf5eFwhsD37" class="bg-acento hover:bg-acento-dark text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-colors">Quiero ser Alumno</a>
         <a href="https://forms.gle/7Coz2nnYUXtsyVVk9" class="bg-white hover:bg-slate-100 text-institucional-900 font-bold px-8 py-4 rounded-xl shadow-lg transition-colors">Quiero ser Profesor Voluntario</a>
@@ -163,17 +159,22 @@
 
   <!-- FOOTER -->
   <footer class="bg-slate-50 border-t border-slate-200 py-12">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
-      <div class="flex items-center gap-2">
-        <span class="h-8 w-14 shrink-0 rounded bg-institucional-900 flex items-center justify-center">
-          <img src="assets/logo-udp-blanco.png" alt="Logo Universidad Diego Portales" class="h-8 w-12 object-contain">
-        </span>
-        <p>© 2026 Preu Comunidad Portaliana. Proyecto Estudiantil UDP.</p>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="border-b border-slate-200 pb-8 mb-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <p class="text-sm font-semibold text-slate-600">En alianza con:</p>
+        <div class="flex flex-wrap items-center justify-center gap-8" aria-label="Colaboradores externos">
+          <span class="h-12 min-w-28 flex items-center justify-center"><img src="assets/logo-udp-blanco.png" alt="Universidad Diego Portales, colaborador externo" class="max-h-10 max-w-28 object-contain"></span>
+          <span class="h-12 min-w-28 flex items-center justify-center text-sm font-semibold text-slate-500">InspiraTU</span>
+          <span class="h-12 min-w-28 flex items-center justify-center text-sm font-semibold text-slate-500">Resumen</span>
+        </div>
       </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
+        <p>© 2026 Preu Nexo</p>
       <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 font-medium">
         <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="hover:text-acento transition-colors">Instagram (por URL)</a>
         <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="hover:text-acento transition-colors">Discord (por URL)</a>
-        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;su=Contacto%20Comunidad%20Portaliana" target="_blank" rel="noopener noreferrer" class="hover:text-acento transition-colors">Contacto Gmail (por URL)</a>
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;su=Contacto%20Preu%20Nexo" target="_blank" rel="noopener noreferrer" class="hover:text-acento transition-colors">Contacto Gmail (por URL)</a>
+      </div>
       </div>
     </div>
   </footer>

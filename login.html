@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login | Aula Virtual RPUDP</title>
+<title>Ingresar | Aula Virtual Preu Nexo</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: { institucional: { 900: '#0F172A' }, acento: { DEFAULT: '#1D4ED8' } } } } }
@@ -19,9 +19,8 @@
   <div class="relative z-10 w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
     <!-- Header del Login -->
     <div class="bg-institucional-900 p-8 text-center">
-      <img src="assets/logo-udp-blanco.png" alt="Logo Universidad Diego Portales" class="h-24 w-64 object-contain mx-auto mb-4">
-      <h2 class="text-2xl font-bold text-white">Aula Virtual</h2>
-      <p class="text-slate-400 text-sm mt-1">Ingresa tus credenciales de Red Preu UDP</p>
+      <h1 class="text-2xl font-bold text-white">Preu Nexo</h1>
+      <p class="text-slate-300 text-sm mt-1">Aula Virtual</p>
     </div>
 
     <!-- Formulario -->
@@ -45,6 +44,10 @@
       <p class="text-center text-xs text-slate-500 mt-4">¿Tienes problemas? Contacta a la coordinación por Discord.</p>
     </form>
   </div>
+
+  <footer class="absolute bottom-4 z-10 text-center text-white/80 text-xs">
+    En alianza con: Universidad Diego Portales · InspiraTU · Resumen
+  </footer>
 
   <script>
     document.getElementById('loginForm').addEventListener('submit', async function(e) {

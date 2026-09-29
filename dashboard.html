@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aula Virtual — Red Preu UDP</title>
+<title>Aula Virtual | Preu Nexo</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: { 
         extend: { 
             colors: { 
-                /* Colorimetría institucional basada en el rojo UDP */
                 institucional: { 
-                    900: '#7B1113', /* Rojo oscuro principal */
-                    800: '#991B1E', 
-                    700: '#B92B27'
+                  900: '#2563EB',
+                  800: '#1D4ED8',
+                  700: '#1E40AF'
                 }, 
-                acento: { DEFAULT: '#7B1113' } 
+                acento: { DEFAULT: '#2563EB' }
             }, 
             animation: { 'fade-in': 'fadeIn 0.3s ease-in-out' }, 
             keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } } 
@@ -25,39 +24,21 @@
   }
 </script>
 </head>
-<body class="bg-slate-100 text-slate-900 antialiased font-sans relative min-h-screen">
+<body class="bg-slate-100 text-slate-800 antialiased font-sans relative min-h-screen">
 
-  <!-- FONDO DE LA UNIVERSIDAD -->
-  <!-- 📌 INSTRUCCIÓN PARA TI: Guarda tu foto de la biblioteca o campus en la carpeta 'images' con el nombre 'fondo-universidad.jpg' -->
-  <div class="fixed inset-0 z-[-1]">
-    <img src="images/fondo-universidad.jpg" alt="Fondo Campus UDP" class="w-full h-full object-cover opacity-30 grayscale mix-blend-multiply">
-  </div>
+  <div class="fixed inset-0 z-[-1] bg-gradient-to-br from-sky-100 via-slate-100 to-indigo-100" aria-hidden="true"></div>
 
   <!-- NAVBAR CON LOGOS Y ALIANZAS -->
-  <header class="bg-institucional-900 sticky top-0 z-40 shadow-md border-b border-institucional-800">
+  <header class="sticky top-0 z-40 bg-white/40 backdrop-blur-lg border-b border-white/30 shadow-xl shadow-blue-500/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
       
       <!-- LOGO PRINCIPAL -->
       <div class="flex items-center gap-3">
-        <!-- 📌 INSTRUCCIÓN PARA TI: Guarda el logo blanco de la UDP en 'images' con el nombre 'logo-udp-blanco.png' -->
-        <img src="images/logo-udp-blanco.png" alt="Logo UDP" class="h-12 object-contain">
-        <div class="h-6 w-px bg-white/30 hidden sm:block"></div>
-        <span class="text-white font-semibold hidden sm:block tracking-wide">Red Preu UDP</span>
-      </div>
-
-      <!-- ZONA DE LOGOS INSTITUCIONALES (InspiraTU, Resumen) -->
-      <div class="hidden md:flex items-center gap-4 bg-black/20 px-4 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
-         <span class="text-xs text-white/70 font-medium mr-2">En alianza con:</span>
-         
-         <!-- 📌 INSTRUCCIÓN PARA TI: Guarda el logo de InspiraTU en 'images' como 'logo-inspiratu.png' -->
-         <img src="images/logo-inspiratu.png" alt="InspiraTU" class="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity">
-         
-         <!-- 📌 INSTRUCCIÓN PARA TI: Guarda el logo de Resumen en 'images' como 'logo-resumen.png' -->
-         <img src="images/logo-resumen.png" alt="Resumen" class="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity">
+          <span class="text-slate-800 font-bold tracking-tight">Preu Nexo</span>
       </div>
 
       <!-- INICIALES USUARIO -->
-      <div class="w-9 h-9 rounded-full bg-institucional-800 border-2 border-white/20 flex items-center justify-center text-white text-sm font-bold cursor-pointer user-initials hover:bg-institucional-700 transition-colors shadow-inner">--</div>
+      <div class="w-9 h-9 rounded-full bg-white/60 border border-white/50 flex items-center justify-center text-blue-700 text-sm font-bold cursor-pointer user-initials hover:bg-white/80 transition-colors shadow-sm">--</div>
     </div>
   </header>
 
@@ -65,13 +46,13 @@
     
     <!-- SIDEBAR PERFIL -->
     <aside class="w-full lg:w-72 shrink-0">
-      <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-lg border border-white/50 p-8 sticky top-24">
+      <div class="bg-white/40 backdrop-blur-lg rounded-3xl shadow-xl shadow-blue-500/10 border border-white/30 p-8 sticky top-24">
         <div class="text-center mb-6">
           <div class="w-28 h-28 mx-auto rounded-full bg-slate-100 border-4 border-white shadow-md p-1 mb-4 flex items-center justify-center">
             <div class="w-full h-full bg-institucional-900/5 rounded-full flex items-center justify-center text-4xl font-black text-institucional-900 user-initials">--</div>
           </div>
           <h2 class="font-bold text-xl text-slate-800" id="user-name">Cargando...</h2>
-          <p class="text-sm font-bold text-institucional-900 mt-1">Red Preu UDP</p>
+          <p class="text-sm font-bold text-blue-600 mt-1">Preu Nexo</p>
           <p class="text-xs text-slate-400 mt-1">Generación 2026</p>
         </div>
         <div class="w-full h-px bg-slate-200 my-6"></div>
@@ -84,7 +65,7 @@
       
       <!-- VISTA 1: LISTA DE CURSOS DINÁMICA -->
       <section id="vista-cursos" class="animate-fade-in">
-        <div class="mb-6 flex justify-between items-end bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-white">
+        <div class="mb-6 flex justify-between items-end bg-white/40 backdrop-blur-lg p-5 rounded-2xl shadow-xl shadow-blue-500/10 border border-white/30">
           <div>
             <h1 class="text-2xl font-bold text-slate-800">Mis ramos activos</h1>
             <p class="text-sm text-slate-500 mt-1">Selecciona una materia para continuar tu preparación.</p>
@@ -101,31 +82,30 @@
           &larr; Volver al inicio
         </button>
         
-        <!-- BANNER DEL CURSO (Rojo Institucional) -->
-        <div class="bg-institucional-900 rounded-3xl p-8 mb-8 text-white flex items-center gap-6 shadow-xl relative overflow-hidden border border-institucional-800">
+        <div class="bg-white/40 backdrop-blur-lg rounded-3xl p-8 mb-8 text-slate-800 flex items-center gap-6 shadow-xl shadow-blue-500/10 relative overflow-hidden border border-white/30">
           
           <!-- Elementos decorativos del banner -->
-          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl -mr-20 -mt-20"></div>
+          <div class="absolute top-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
           
-          <div class="w-20 h-20 rounded-2xl bg-white/10 text-white flex items-center justify-center font-black text-3xl border border-white/20 shadow-inner backdrop-blur-sm z-10" id="curso-icono"></div>
+          <div class="w-20 h-20 rounded-2xl bg-blue-500/10 text-blue-700 flex items-center justify-center font-black text-3xl border border-white/50 shadow-inner backdrop-blur-sm z-10" id="curso-icono"></div>
           
           <div class="z-10 w-full">
             <div class="flex justify-between items-start">
               <div>
                 <h1 class="text-3xl sm:text-4xl font-black mb-2 tracking-tight drop-shadow-md" id="curso-titulo"></h1>
-                <p class="text-white/80 font-medium flex items-center gap-2 text-sm">
+                <p class="text-slate-600 font-medium flex items-center gap-2 text-sm">
                   <span class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.8)]"></span>
                   <span id="curso-profesor"></span>
                 </p>
               </div>
-              <div class="text-right hidden sm:block bg-black/20 px-5 py-3 rounded-2xl border border-white/10 backdrop-blur-md">
-                <span class="text-xs font-bold text-white/70 uppercase tracking-wider block mb-1">Progreso</span>
-                <p class="text-3xl font-black text-white drop-shadow-md" id="curso-progreso-texto">0%</p>
+              <div class="text-right hidden sm:block bg-white/40 px-5 py-3 rounded-2xl border border-white/30 backdrop-blur-md">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Progreso</span>
+                <p class="text-3xl font-black text-slate-800" id="curso-progreso-texto">0%</p>
               </div>
             </div>
             
-            <div class="w-full bg-black/30 rounded-full h-3 mt-6 border border-white/10 overflow-hidden shadow-inner">
-              <div id="curso-progreso-barra" class="bg-white h-full rounded-full transition-all duration-700 relative shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
+            <div class="w-full bg-slate-200/70 rounded-full h-3 mt-6 border border-white/50 overflow-hidden shadow-inner">
+              <div id="curso-progreso-barra" class="bg-blue-600 h-full rounded-full transition-all duration-700 relative"></div>
             </div>
           </div>
         </div>
@@ -135,7 +115,7 @@
           
           <!-- Botón Apuntes -->
           <!-- 📌 INSTRUCCIÓN PARA TI: Guarda el ícono de apuntes en 'images' como 'icono-apuntes.png' -->
-          <button onclick="cargarContenido('documentos')" class="bg-white/95 backdrop-blur-sm rounded-3xl border border-white shadow-lg hover:shadow-xl hover:border-institucional-900/30 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center p-6 sm:py-8 group">
+          <button onclick="cargarContenido('documentos')" class="bg-white/40 backdrop-blur-lg rounded-3xl border border-white/30 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:border-blue-200 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center p-6 sm:py-8 group">
             <div class="h-16 mb-4 transform group-hover:scale-110 transition-transform">
                <img src="images/icono-apuntes.png" alt="Apuntes" class="h-full object-contain drop-shadow-md">
             </div>
@@ -144,7 +124,7 @@
           
           <!-- Botón Guías -->
           <!-- 📌 INSTRUCCIÓN PARA TI: Guarda el ícono de guías en 'images' como 'icono-guias.png' -->
-          <button onclick="cargarContenido('ejercicios')" class="bg-white/95 backdrop-blur-sm rounded-3xl border border-white shadow-lg hover:shadow-xl hover:border-institucional-900/30 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center p-6 sm:py-8 group">
+          <button onclick="cargarContenido('ejercicios')" class="bg-white/40 backdrop-blur-lg rounded-3xl border border-white/30 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:border-blue-200 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center p-6 sm:py-8 group">
             <div class="h-16 mb-4 transform group-hover:scale-110 transition-transform">
                <img src="images/icono-guias.png" alt="Guías" class="h-full object-contain drop-shadow-md">
             </div>
@@ -153,9 +133,9 @@
           
           <!-- Botón Clase Viva -->
           <!-- 📌 INSTRUCCIÓN PARA TI: Guarda el ícono de video en 'images' como 'icono-clase.png' -->
-          <button onclick="cargarContenido('clases')" class="bg-white/95 backdrop-blur-sm rounded-3xl border border-white shadow-lg hover:shadow-xl hover:border-institucional-900/30 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center p-6 sm:py-8 group">
+          <button onclick="cargarContenido('clases')" class="bg-white/40 backdrop-blur-lg rounded-3xl border border-white/30 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:border-blue-200 transform hover:-translate-y-1 transition-all flex flex-col items-center justify-center p-6 sm:py-8 group">
             <div class="h-16 mb-4 transform group-hover:scale-110 transition-transform relative">
-               <div class="absolute -top-1 -right-1 flex h-3 w-3 z-10"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 shadow-sm"></span></div>
+               <div class="absolute -top-1 -right-1 flex h-3 w-3 z-10"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500 shadow-sm"></span></div>
                <img src="images/icono-clase.png" alt="Clase Viva" class="h-full object-contain drop-shadow-md relative z-0">
             </div>
             <span class="font-bold text-sm sm:text-base text-slate-700 group-hover:text-institucional-900">Clase Viva</span>
@@ -164,7 +144,7 @@
         </div>
 
         <!-- PANEL DE VISUALIZACIÓN DINÁMICA -->
-        <div id="panel-contenido" class="bg-white/95 backdrop-blur-md rounded-3xl border border-white p-6 sm:p-8 shadow-xl hidden animate-fade-in">
+        <div id="panel-contenido" class="bg-white/40 backdrop-blur-lg rounded-3xl border border-white/30 p-6 sm:p-8 shadow-xl shadow-blue-500/10 hidden animate-fade-in">
           <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
              <!-- 📌 INSTRUCCIÓN PARA TI: Guarda un ícono genérico decorativo en 'images' como 'icono-panel.png' (opcional, si no, usa el emoji que dejé como respaldo) -->
              <span class="text-2xl text-institucional-900 drop-shadow-sm">📋</span>
@@ -176,6 +156,17 @@
 
     </main>
   </div>
+
+  <footer class="relative z-10 border-t border-white/40 bg-white/30 backdrop-blur-lg py-7">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-5">
+      <p class="text-sm font-semibold text-slate-600">En alianza con:</p>
+      <div class="flex flex-wrap items-center justify-center gap-8 text-sm font-semibold text-slate-600" aria-label="Colaboradores externos">
+        <img src="assets/logos/cp-logo.png" alt="Universidad Diego Portales, colaborador externo" class="h-10 w-28 object-contain">
+        <span class="min-w-24 text-center">InspiraTU</span>
+        <span class="min-w-24 text-center">Resumen</span>
+      </div>
+    </div>
+  </footer>
 
   <script>
     // --- LÓGICA DE DATOS (Mantiene tu funcionalidad actual intacta) ---
@@ -231,7 +222,7 @@
           let progreso = parseInt(localStorage.getItem(`progreso_${curso}`) || 0);
 
           const tarjeta = document.createElement('button');
-          tarjeta.className = "text-left bg-white/95 backdrop-blur-md rounded-3xl border border-white shadow-lg hover:shadow-xl hover:border-institucional-900/30 transform hover:-translate-y-1.5 transition-all duration-300 p-8 group w-full relative overflow-hidden";
+          tarjeta.className = "text-left bg-white/40 backdrop-blur-lg rounded-3xl border border-white/30 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:border-blue-200 transform hover:-translate-y-1.5 transition-all duration-300 p-8 group w-full relative overflow-hidden";
           tarjeta.onclick = () => abrirCurso(curso, info.profe, info.icono);
           tarjeta.innerHTML = `
             <div class="absolute top-0 right-0 w-32 h-32 bg-institucional-900/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-institucional-900/10 transition-colors"></div>
